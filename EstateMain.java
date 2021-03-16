@@ -3,7 +3,7 @@
  *ke fix bug lam` code, khoc' trong long` mot it'
  *
  *@auth HPPC
- *@date Jan 31, 2021
+ *@date Mar 13, 2021
  */
 package lession12;
 
@@ -23,22 +23,22 @@ public class EstateMain {
 	static final String PASS = "3dhYMg";
 
 	public static void main(String[] args) {
-		String nameSeach = null;
+		String nameSeach = "Building";
 		String districtSeach = null;
 		String buildingrenttypeSeach = null;
 		String renttypeSeach = null;
 		String assignmentbuildingSeach = null;
 		String userSeach = null;
-		Integer floorareaSeach = 10;
-		Integer numberofbasementSeach = 10;
+		Integer floorareaSeach = 500;
+		Integer numberofbasementSeach = 2;
 		String wardSeach = null;
-		String streetSeach = null;
-		Integer levelSeach = 10;
+		String streetSeach = "phan";
+		Integer levelSeach = null;
 		String directionSeach = null;
 		Integer rentareaSeach = 10;
-		Integer rentpriceSeah = 10;
+		Integer rentpriceSeah = 20;
 		String managernameSeach = null;
-		Integer managernamephoneSeach = 12;
+		Integer managernamephoneSeach = 10;
 
 		Connection conn = null;
 		Statement stmt = null;
@@ -72,11 +72,9 @@ public class EstateMain {
 				int numberofbasement = rs.getInt("numberofbasement");
 				String direction = rs.getString("direction");
 				String level = rs.getString("level");
-				// String rentarea = rs.getString("rentarea");
-				int rentprice = rs.getInt("rentprice");
+				//int rentprice = rs.getInt("rentprice");
 				// String managername = rs.getString("managername");
 				// int managernamephone = rs.getInt("managernamephone");
-				// String renttype = rs.getString("renttype");*/
 
 				// Display values
 				System.out.print("ID: " + id);
@@ -86,14 +84,10 @@ public class EstateMain {
 				System.out.print(", FloorArea: " + floorArea);
 				System.out.print(", Numberofbasement: " + numberofbasement);
 				System.out.print(", Direction: " + direction);
-				System.out.print(", Level: " + level);
-				// System.out.print(", Rentarea: " + rentarea);
-				System.out.println(", Rentprice: " + rentprice);
+				System.out.println(", Level: " + level);
+				//System.out.println(", Rentprice: " + rentprice);
 				// System.out.print(", Managername: " + managername);
-				/*
-				 * System.out.print(", Managernamephone: " + managernamephone);
-				 * System.out.println(", renttype: " + renttype);
-				 */
+			    //System.out.print(", Managernamephone: " + managernamephone);
 			}
 			rs.close();
 		} catch (SQLException se) {
@@ -123,62 +117,58 @@ public class EstateMain {
 			String buildingrenttype, String renttype, String assignmentbuilding, String user,
 			Integer numberofbasement, String ward, String street, Integer level, String direction,
 			Integer rentarea, Integer rentprice, String managername, Integer managernamephone) {
-		StringBuilder sql = new StringBuilder("SELECT * FROM building b");
-
+		StringBuilder sql = new StringBuilder(" SELECT * FROM building b");
 		if (district != null && district != "") {
-			sql.append("inner join district d on d.id = b.districtid");
+			sql.append(" inner join district d on d.id = b.districtid");
 		}
 		if (buildingrenttype != null) {
-			sql.append("inner join buildingrenttype as bt on bt.buildingid = b.id");
+			sql.append(" inner join buildingrenttype as bt on bt.buildingid = b.id");
 		}
 		if (renttype != null) {
-			sql.append("inner join renttype as rt on rt.id = bt.renttypeid");
+			sql.append(" inner join renttype as rt on rt.id = bt.renttypeid");
 		}
 		if (rentarea != null) {
-			sql.append("inner join rentarea ra on ra.buildingid = b.id");
+			sql.append(" inner join rentarea ra on ra.buildingid = b.id");
 		}
 		if (assignmentbuilding != null) {
-			sql.append("inner join assignmentbuilding as ab on ab.buildingid = b.id ");
+			sql.append(" inner join assignmentbuilding as ab on ab.buildingid = b.id");
 		}
 		if (user != null) {
-			sql.append("inner join user as u on u.id = ab.staffid  WHERE 1 = 1 ");
+			sql.append(" inner join user as u on u.id = ab.staffid WHERE 1 = 1");
 		}
 		if (name != null && name != "") {
-			sql.append("and name like '%" + name + "%'");
+			sql.append(" and name like '%" + name + "%'");
 		}
 		if (ward != null && ward != "") {
-			sql.append("and ward like '%" + ward + "%'");
+			sql.append(" and ward like '%" + ward + "%'");
 		}
 		if (street != null && street != "") {
-			sql.append("and street like '%" + street + "%'");
+			sql.append(" and street like '%" + street + "%'");
 		}
 		if (floorarea != null) {
-			sql.append("and floorarea  = " + floorarea + "");
+			sql.append(" and floorarea = "+ floorarea + "");
 		}
 		if (numberofbasement != null) {
-			sql.append("and numberofbasement = " + numberofbasement + "");
+			sql.append(" and numberofbasement = " +numberofbasement+ "");
 		}
 		if (direction != null) {
-			sql.append("and direction = " + direction + "");
+			sql.append(" and direction = " + direction + "");
 		}
 		if (level != null) {
-			sql.append("and level = " + level + "");
+			sql.append(" and level = " + level + "");
 		}
-		if (rentarea != null) {
-			sql.append(
-					"and EXISTS (SELECT * FROM rentarea WHERE ra.buildingid = b.id AND(ra.value between 'input_rentarea_from' and 'input_rentarea_to' )"
-							+ rentarea + "");
-		}
+		/*if (rentarea != null) {
+			sql.append(" and EXISTS (SELECT * FROM rentarea WHERE ra.buildingid = b.id AND (ra.value between 'input_rentarea_from' and 'input_rentarea_to' )");
+		}*/
 		if (rentprice != null) {
-			sql.append("and b.rentprice >= 'input_rentprice_from'"
-					+ "and b.rentprice <= 'input_rentprice_to'"
-					+ "and (b.rentprice between 'input_rentprice_from' and 'input_rentprice_to')"
-					+ rentprice + "");
+			sql.append(" and b.rentprice >= 0" + " and b.rentprice <=  " + " and (b.rentprice between 0 and 20)");
 		}
 		if (renttype != null && renttype != "") {
-			sql.append("and rt.code like '%tang_tret%' or '%noi_that%' or '%nguyen_can%'" + renttype + "");
+			sql.append(" and rt.code like '%tang_tret%' or '%noi_that%' or '%nguyen_can%'");
 		}
-		sql.append("group by b.id");
+		sql.append(" group by b.id");
+		System.out.println(sql);
 		return sql;
 	}
 }
+
