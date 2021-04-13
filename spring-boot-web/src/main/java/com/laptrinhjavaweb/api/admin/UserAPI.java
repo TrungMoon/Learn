@@ -19,7 +19,7 @@ public class UserAPI {
     @Autowired
     private IUserService userService;
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<UserDTO> createUsers(@RequestBody UserDTO newUser) {
         return ResponseEntity.ok(userService.insert(newUser));
     }
@@ -56,5 +56,5 @@ public class UserAPI {
             userService.delete(idList);
         }
         return ResponseEntity.noContent().build();
-    }
+    }*/
 }

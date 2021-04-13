@@ -174,17 +174,23 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="form-field-select-3">Nhân Viên</label>
+                                                    <%--<label for="staffId">Nhân Viên</label>
                                                     <div>
                                                         <select class="chosen-select form-control"
-                                                                id="form-field-select-3"
+                                                                id="staffId"
                                                                 data-placeholder="Choose a State...">
                                                             <option value="take">-- Chọn người phục vụ --</option>
                                                             <option value="ID">Vũ Thị Thu Hà</option>
                                                             <option value="IL">Hảo Hảo Lớ</option>
                                                             <option value="IN">Ngọng 1</option>
                                                             <option value="IA">Cô gái vú to</option>
-                                                        </select>
+                                                        </select>--%>
+                                                        <label for="staffId">Nhân Viên</label>
+                                                        <div>
+                                                    <form:select path="staffId">
+                                                        <form:option value="-1" label="---Chọn người phục vụ---"/>
+                                                        <form:options items="${staffmaps}"/>
+                                                    </form:select>
                                                     </div>
 
                                                 </div>

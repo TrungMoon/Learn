@@ -53,37 +53,42 @@
 
                                 <form:form commandName="modelSearch" action="${buildingListURL}" id="listForm"
                                            method="get">
-                                    <div class="forn-horizontal">
-                                        <div class="form-group">
-                                            <!-- PAGE CONTENT BEGINS -->
-                                            <div class="col-sm-6">
-                                                <div>
-                                                    <label for="name">Tên tòa nhà</label>
-                                                    <!--<input type="text" id="name" placeholder="VinCity"
+                                <div class="forn-horizontal">
+                                    <div class="form-group">
+                                        <!-- PAGE CONTENT BEGINS -->
+                                        <div class="col-sm-6">
+                                            <div>
+                                                <label for="name">Tên tòa nhà</label>
+                                                <!--<input type="text" id="name" placeholder="VinCity"
                                                            class="form-control" name="name" value="${modelSearch.name}"/>-->
-                                                    <form:input path="name" cssClass="form-control"/>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-
-                                                <label for="floorArea">Diện tích sàn</label>
-                                                <input type="number" id="floorArea" placeholder="100"
-                                                       class="form-control" name="floorArea"
-                                                       value="${modelSearch.floorArea}"/>
+                                                <form:input path="name" cssClass="form-control"/>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-4">
+                                        <div class="col-sm-6">
+
+                                            <label for="floorArea">Diện tích sàn</label>
+                                            <input type="number" id="floorArea" placeholder="100"
+                                                   class="form-control" name="floorArea"
+                                                   value="${modelSearch.floorArea}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <div>
+                                                <label for="districtId">Quận</label>
                                                 <div>
-                                                    <label for="district">Quận</label>
-                                                    <div>
-                                                        <select class="chosen-select form-control" id="district"
+                                                        <%--<select class="chosen-select form-control" id="district"
                                                                 data-placeholder="Choose a State...">
                                                             <option value="take">-- Chọn quận --</option>
                                                             <option value="Q1">Quận 1</option>
                                                             <option value="Q2">Quận 2</option>
                                                             <option value="Q4">Quận 4</option>
-                                                        </select>
+                                                        </select>--%>
+                                                    <div>
+                                                        <form:select path="districtId">
+                                                            <form:option value="-1" label="---Chọn Quận---"/>
+                                                            <%--<form:options items="${districtmaps}"/>--%>
+                                                        </form:select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -174,17 +179,23 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="form-field-select-3">Nhân Viên</label>
+                                                        <%--<label for="staffId">Nhân Viên</label>
+                                                        <div>
+                                                            <select class="chosen-select form-control"
+                                                                    id="staffId"
+                                                                    data-placeholder="Choose a State...">
+                                                                <option value="take">-- Chọn người phục vụ --</option>
+                                                                <option value="ID">Vũ Thị Thu Hà</option>
+                                                                <option value="IL">Hảo Hảo Lớ</option>
+                                                                <option value="IN">Ngọng 1</option>
+                                                                <option value="IA">Cô gái vú to</option>
+                                                            </select>--%>
+                                                    <label for="staffId">Nhân Viên</label>
                                                     <div>
-                                                        <select class="chosen-select form-control"
-                                                                id="form-field-select-3"
-                                                                data-placeholder="Choose a State...">
-                                                            <option value="take">-- Chọn người phục vụ --</option>
-                                                            <option value="ID">Vũ Thị Thu Hà</option>
-                                                            <option value="IL">Hảo Hảo Lớ</option>
-                                                            <option value="IN">Ngọng 1</option>
-                                                            <option value="IA">Cô gái vú to</option>
-                                                        </select>
+                                                        <form:select path="staffId">
+                                                            <form:option value="-1" label="---Chọn người phục vụ---"/>
+                                                            <form:options items="${staffmaps}"/>
+                                                        </form:select>
                                                     </div>
 
                                                 </div>
@@ -234,215 +245,215 @@
                                             <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
                                         </button>
                                     </div>
-                                </form:form>
+                                    </form:form>
 
 
-                            </div><!-- /.col -->
+                                </div><!-- /.col -->
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="pull-right">
-                        <button class="btn btn-white btn-default btn-round" data-toggle="tooltip"
-                                title="Thêm tòa nhà">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="pull-right">
+                            <button class="btn btn-white btn-default btn-round" data-toggle="tooltip"
+                                    title="Thêm tòa nhà">
 								<span>
 									<i class="fa fa-plus-circle bigger-120" aria-hidden="true" style="color:black"></i>
 								</span>
-                        </button>
-                        <button class="btn btn-white btn-warning btn-round" data-toggle="tooltip"
-                                title="Xóa tòa nhà" id="btnDeleteBuilding">
+                            </button>
+                            <button class="btn btn-white btn-warning btn-round" data-toggle="tooltip"
+                                    title="Xóa tòa nhà" id="btnDeleteBuilding">
 								<span>
 									<i class="ace-icon fa fa-times red2" aria-hidden="true" style="color:black"></i>
 								</span>
-                        </button>
+                            </button>
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+                <br/>
+                <!-- Phần TABLE -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table id="buildingList" class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="center">
+                                    <label class="pos-rel">
+                                        <input type="checkbox" class="ace"/>
+                                        <span class="lbl"></span>
+                                    </label>
+                                </th>
+                                <th>
+                                    <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                                    Ngày
+                                </th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số tầng hầm</th>
+                                <th>Địa chỉ</th>
+                                <th>Quản lý</th>
+                                <th>Số điện thoại</th>
+                                <th>Diện tích sàn</th>
+                                <th class="hidden-480">Giá thuê</th>
+                                <th class="hidden-480">Phí dịch vụ</th>
+                                <th>Thao tác</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="item" items="${buildings}">
+                                <tr>
+                                    <td class="center">
+                                        <label class="pos-rel">
+                                            <input type="checkbox" value="1" id="checkbox_1"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+                                    <td>abc</td>
+                                    <td>${item.name}</td>
+                                    <td>${item.numberOfBasement}</td>
+                                    <td>abc</td>
+                                    <td>abc</td>
+                                    <td>abc</td>
+                                    <td>abc</td>
+                                    <td>abc</td>
+                                    <td>abc</td>
+                                    <td>
+                                        <button class="btn btn-xs btn-info" data-toggle="tooltip"
+                                                title="Giao tòa nhà" onclick="assignmentBuilding(1)">
+                                            <i class="ace-icon fa fa-users bigger-120" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div><!-- /.row -->
-            <br/>
-            <!-- Phần TABLE -->
-            <div class="row">
-                <div class="col-xs-12">
-                    <table id="buildingList" class="table table-striped table-bordered table-hover">
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    <!-- assignment Building Modal -->
+    <div class="modal fade" id="assignmentBuildingModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Danh sách nhân viên</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered" id="staffsList">
                         <thead>
                         <tr>
-                            <th class="center">
-                                <label class="pos-rel">
-                                    <input type="checkbox" class="ace"/>
-                                    <span class="lbl"></span>
-                                </label>
-                            </th>
-                            <th>
-                                <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                Ngày
-                            </th>
-                            <th>Tên sản phẩm</th>
-                            <th>Số tầng hầm</th>
-                            <th>Địa chỉ</th>
-                            <th>Quản lý</th>
-                            <th>Số điện thoại</th>
-                            <th>Diện tích sàn</th>
-                            <th class="hidden-480">Giá thuê</th>
-                            <th class="hidden-480">Phí dịch vụ</th>
-                            <th>Thao tác</th>
+                            <th>Chọn nhân viên</th>
+                            <th>Tên nhân viên</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="item" items="${buildings}" >
-                            <tr>
-                                <td class="center">
-                                    <label class="pos-rel">
-                                        <input type="checkbox" value="1" id="checkbox_1"/>
-                                        <span class="lbl"></span>
-                                    </label>
-                                </td>
-                                <td>abc</td>
-                                <td>${item.name}</td>
-                                <td>${item.numberOfBasement}</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>
-                                    <button class="btn btn-xs btn-info" data-toggle="tooltip"
-                                            title="Giao tòa nhà" onclick="assignmentBuilding(1)">
-                                        <i class="ace-icon fa fa-users bigger-120" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </c:forEach>
-
+                        <tr>
+                            <td><input type="checkbox" value="2" id="checkbox_2"/></td>
+                            <td>Ngyễn Văn B</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="3" id="checkbox_3"/></td>
+                            <td>Ngyễn Văn C</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="4" id="checkbox_4"/></td>
+                            <td>Ngyễn Văn D</td>
+                        </tr>
                         </tbody>
                     </table>
+                    <input type="hidden" id="buildingId" name="buildingId" value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="btnAssignBuilding">Giao tòa nhà</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-        </div><!-- /.page-content -->
-    </div>
-</div><!-- /.main-content -->
 
-<!-- assignment Building Modal -->
-<div class="modal fade" id="assignmentBuildingModal" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Danh sách nhân viên</h4>
-            </div>
-            <div class="modal-body">
-                <table class="table table-bordered" id="staffsList">
-                    <thead>
-                    <tr>
-                        <th>Chọn nhân viên</th>
-                        <th>Tên nhân viên</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><input type="checkbox" value="2" id="checkbox_2"/></td>
-                        <td>Ngyễn Văn B</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" value="3" id="checkbox_3"/></td>
-                        <td>Ngyễn Văn C</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" value="4" id="checkbox_4"/></td>
-                        <td>Ngyễn Văn D</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <input type="hidden" id="buildingId" name="buildingId" value="">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="btnAssignBuilding">Giao tòa nhà</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
         </div>
-
     </div>
-</div>
 
-<script>
-    function assignmentBuilding(buildingId) {
-        openModalAssignmentBuilding();
-        $('#buildingId').val(buildingId);
-        console.log($('#buildingId').val());
-    }
+    <script>
+        function assignmentBuilding(buildingId) {
+            openModalAssignmentBuilding();
+            $('#buildingId').val(buildingId);
+            console.log($('#buildingId').val());
+        }
 
-    function openModalAssignmentBuilding() {
-        $('#assignmentBuildingModal').modal();
-    }
+        function openModalAssignmentBuilding() {
+            $('#assignmentBuildingModal').modal();
+        }
 
-    $('#btnAssignBuilding').click(function (e) {
-        e.preventDefault();
-        //Call API
-        var data = {};
-        data['buidingId'] = $('#buildingId').val();
-        //$('#staffsList').find('tbody input[type=checkbox]')
-        var staffs = $('#staffsList').find('tbody input[type=checkbox]:checked').map(function () {
-            return $(this).val();
+        $('#btnAssignBuilding').click(function (e) {
+            e.preventDefault();
+            //Call API
+            var data = {};
+            data['buidingId'] = $('#buildingId').val();
+            //$('#staffsList').find('tbody input[type=checkbox]')
+            var staffs = $('#staffsList').find('tbody input[type=checkbox]:checked').map(function () {
+                return $(this).val();
 
-        }).get();
-        data['staffs'] = staffs;
-        assignStaff(data);
-    });
+            }).get();
+            data['staffs'] = staffs;
+            assignStaff(data);
+        });
 
-    function assignStaff(data) {
-        $.ajax({
-            url: "http://localhost:8080/api-user-assignment",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(data),
-            contentType: "application/json",
-        })
-            .done(function (response) {
-                console.log("success");
+        function assignStaff(data) {
+            $.ajax({
+                url: "http://localhost:8080/api-user-assignment",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: "application/json",
             })
-            .fail(function (response) {
-                console.log("error");
-                console.log(response);
-            });
-    }
+                .done(function (response) {
+                    console.log("success");
+                })
+                .fail(function (response) {
+                    console.log("error");
+                    console.log(response);
+                });
+        }
 
-    $('#btnDeleteBuilding').click(function (e) {
-        e.preventDefault();
-        var data = {};
-        var buildingIds = $('#buildingList').find('tbody input[type=checkbox]:checked').map(function () {
-            return $(this).val();
+        $('#btnDeleteBuilding').click(function (e) {
+            e.preventDefault();
+            var data = {};
+            var buildingIds = $('#buildingList').find('tbody input[type=checkbox]:checked').map(function () {
+                return $(this).val();
 
-        }).get();
-        data['buildingIds'] = buildingIds
-        deleteBuilding(data);
-    });
+            }).get();
+            data['buildingIds'] = buildingIds
+            deleteBuilding(data);
+        });
 
-    function deleteBuilding(data) {
-        $.ajax({
-            url: "http://localhost:8080/api-building",
-            type: "DELETE",
-            dataType: "json",
-            data: JSON.stringify(data),
-            contentType: "application/json",
-        })
-            .done(function (response) {
-                console.log("success");
+        function deleteBuilding(data) {
+            $.ajax({
+                url: "http://localhost:8080/api-building",
+                type: "DELETE",
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: "application/json",
             })
-            .fail(function (response) {
-                console.log("error");
-                console.log(response);
-            });
-    }
+                .done(function (response) {
+                    console.log("success");
+                })
+                .fail(function (response) {
+                    console.log("error");
+                    console.log(response);
+                });
+        }
 
-    $('#btnSearch').click(function (e) {
-        e.preventDefault();
-        $('#listForm').submit();
-    });
+        $('#btnSearch').click(function (e) {
+            e.preventDefault();
+            $('#listForm').submit();
+        });
 
-</script>
+    </script>
 
 </body>
 </html>

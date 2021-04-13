@@ -38,4 +38,5 @@ public class BuildingServise implements IBuildingService {
         BuildingEntity buildingEntity = buildingConverter.convertToEntity(buildingDTO);
         buildingRepository.save(buildingEntity);
     }
+
 }
