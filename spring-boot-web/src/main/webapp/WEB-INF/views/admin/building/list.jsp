@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp" %>
+<c:url var="loadStaffAPI" value="/api/building"/>
 <c:url var="buildingListURL" value="/admin/building-list"/>
 
 <html>
@@ -77,19 +78,19 @@
                                             <div>
                                                 <label for="districtId">Quận</label>
                                                 <div>
-                                                        <%--<select class="chosen-select form-control" id="district"
-                                                                data-placeholder="Choose a State...">
-                                                            <option value="take">-- Chọn quận --</option>
-                                                            <option value="Q1">Quận 1</option>
-                                                            <option value="Q2">Quận 2</option>
-                                                            <option value="Q4">Quận 4</option>
-                                                        </select>--%>
-                                                    <div>
-                                                        <form:select path="districtId">
-                                                            <form:option value="-1" label="---Chọn Quận---"/>
-                                                            <%--<form:options items="${districtmaps}"/>--%>
-                                                        </form:select>
-                                                    </div>
+                                                    <select class="chosen-select form-control" id="districtId"
+                                                            data-placeholder="Choose a State...">
+                                                        <option value="take">-- Chọn quận --</option>
+                                                        <option value="Q1">Quận 1</option>
+                                                        <option value="Q2">Quận 2</option>
+                                                        <option value="Q4">Quận 4</option>
+                                                    </select>
+                                                        <%--<div>
+                                                            <form:select path="districtId">
+                                                                <form:option value="-1" label="---Chọn Quận---"/>
+                                                                <%--<form:options items="${districtmaps}"/>
+                                                </form:select>
+                                            </div>--%>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -110,7 +111,6 @@
                                                 <div>
                                                     <label for="numberOfBaseMent">Số tầng hầm</label>
                                                     <input type="text" id="numberOfBaseMent"
-                                                           placeholder="thường thì chỉ có 1"
                                                            class="form-control"/>
 
                                                 </div>
@@ -353,18 +353,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td><input type="checkbox" value="2" id="checkbox_2"/></td>
+                        <!--tr>
+                            <td><input type="checkbox" value="2" id="checkbox_2" checked/></td>
                             <td>Ngyễn Văn B</td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" value="3" id="checkbox_3"/></td>
+                            <td><input type="checkbox" value="3" id="checkbox_3" checked/></td>
                             <td>Ngyễn Văn C</td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" value="4" id="checkbox_4"/></td>
                             <td>Ngyễn Văn D</td>
-                        </tr>
+                        </tr-->
                         </tbody>
                     </table>
                     <input type="hidden" id="buildingId" name="buildingId" value="">
@@ -381,8 +381,26 @@
     <script>
         function assignmentBuilding(buildingId) {
             openModalAssignmentBuilding();
+            loadStaff();
             $('#buildingId').val(buildingId);
             console.log($('#buildingId').val());
+        };
+
+        function loadStaff() {
+            $.ajax({
+                type: "GET",
+                url: "${loadStaffAPI}/1/staffs",
+                dataType: "json",
+                //data: JSON.stringify(data),
+                //contentType: "application/json",
+                success: function (response) {
+                    console.log("success");
+                },
+                error: function (response) {
+                    console.log("error");
+                    console.log(response);
+                }
+        });
         }
 
         function openModalAssignmentBuilding() {
